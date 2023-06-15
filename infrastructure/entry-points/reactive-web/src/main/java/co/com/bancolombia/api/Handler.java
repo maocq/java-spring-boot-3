@@ -20,7 +20,8 @@ public class Handler {
 
         return serverRequest.bodyToMono(RegisterAccountRequest.class)
                 .switchIfEmpty(Mono.error(new BusinessException(INVALID_REQUEST)))
-                .flatMap(request -> registerAccountUseCase.register(request.getName()))
+                .flatMap(request ->
+                        registerAccountUseCase.register(request.getName(), request.getStatusId()))
                 .flatMap(account -> ServerResponse.ok().bodyValue(account));
     }
 

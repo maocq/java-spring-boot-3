@@ -14,11 +14,12 @@ public class Account {
 
     private final long id;
     private final String name;
+    private final String status;
 
-    public static Account newAccount(long id, String name) {
+    public static Account newAccount(long id, String name, String status) {
         if (name.equals("error"))
             throw new BusinessException(ACCOUNT_VALIDATION_ERROR);
 
-        return new Account(id, name);
+        return new Account(id, name, status);
     }
 }

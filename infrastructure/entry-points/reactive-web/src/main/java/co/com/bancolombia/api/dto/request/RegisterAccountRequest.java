@@ -12,4 +12,5 @@ import lombok.NoArgsConstructor;
 public class RegisterAccountRequest {
 
     private String name;
+    private String statusId;
 }
