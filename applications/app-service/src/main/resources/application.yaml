@@ -24,3 +24,13 @@ adapter:
   restconsumer:
     timeout: 5000
     url: "https://run.mocky.io"
+commons:
+  jms:
+    output-concurrency: 10
+    output-queue: "DEV.QUEUE.2"
+    producer-ttl: 0
+    reactive: true
+ibm:
+  mq:
+    channel: "DEV.APP.SVRCONN"
+    user: "app"
