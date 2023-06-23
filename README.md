@@ -17,3 +17,25 @@ curl --location 'http://localhost:8080/api/usecase/account' \
 curl 'http://localhost:8080/api/otherusercase/path'
 ```
 
+- DB
+
+```sh
+docker run --name postgres-db -e POSTGRES_PASSWORD=pass -d -p 5432:5432 postgres
+```
+
+```sql
+CREATE TABLE account
+(
+    id                          SERIAL,
+    name                        VARCHAR(200) NOT NULL,
+    status                      VARCHAR(200) NOT NULL,
+    CONSTRAINT account_pk PRIMARY KEY (id)
+);
+
+INSERT INTO public.account
+    (id, name, status)
+VALUES(4000, 'AC12345', 'ENABLED');
+```
+```sql
+select datname, application_name , count(*) as num from pg_stat_activity group by datname,  application_name order by num desc;
+```
