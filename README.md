@@ -12,6 +12,12 @@ curl --location 'http://localhost:8080/api/usecase/account' \
 ```
 
 - ReqReply
+```sh
+docker run -e LICENSE=accept -e MQ_QMGR_NAME=QM1 -p 1414:1414 -p 9443:9443 -d --name ibmmq -e MQ_APP_PASSWORD=passw0rd ibmcom/mq
+
+#Colas temporales
+docker container exec -it ibmmq setmqaut -m QM1 -n SYSTEM.DEFAULT.MODEL.QUEUE -t queue -p app +get +put +inq +dsp
+```
 
 ```sh
 curl 'http://localhost:8080/api/otherusercase/path'
@@ -38,4 +44,8 @@ VALUES(4000, 'AC12345', 'ENABLED');
 ```
 ```sql
 select datname, application_name , count(*) as num from pg_stat_activity group by datname,  application_name order by num desc;
+```
+
+```sh
+curl 'http://localhost:8080/api/db/path'
 ```
