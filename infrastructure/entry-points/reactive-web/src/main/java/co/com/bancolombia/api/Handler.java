@@ -36,8 +36,12 @@ public class Handler {
     }
 
     public Mono<ServerResponse> listenDbUseCase(ServerRequest serverRequest) {
-        return accountRepository.findById(4000L)
-                .flatMap(account -> ServerResponse.ok().bodyValue(account));
+        var id = serverRequest.queryParam("id").orElse("4000");
+
+        return Mono.fromSupplier(() -> Long.valueOf(id))
+                .flatMap(accountRepository::findById)
+                .flatMap(account -> ServerResponse.ok().bodyValue(account))
+                .switchIfEmpty(Mono.defer(() -> ServerResponse.notFound().build()));
     }
 
     public Mono<ServerResponse> listenPOSTUseCase(ServerRequest serverRequest) {

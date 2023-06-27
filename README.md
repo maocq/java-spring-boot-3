@@ -47,5 +47,5 @@ select datname, application_name , count(*) as num from pg_stat_activity group b
 ```
 
 ```sh
-curl 'http://localhost:8080/api/db/path'
+curl 'http://localhost:8080/api/db/path?id=4000'
 ```
