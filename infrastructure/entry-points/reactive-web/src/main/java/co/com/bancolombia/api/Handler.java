@@ -4,6 +4,7 @@ import co.com.bancolombia.api.dto.request.RegisterAccountRequest;
 import co.com.bancolombia.model.account.gateways.AccountRepository;
 import co.com.bancolombia.model.services.ReqReplyService;
 import co.com.bancolombia.model.exceptions.BusinessException;
+import co.com.bancolombia.model.services.ReqReplyServiceFixedQueue;
 import co.com.bancolombia.usecase.registeraccount.RegisterAccountUseCase;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
@@ -19,6 +20,7 @@ public class Handler {
     private final RegisterAccountUseCase registerAccountUseCase;
 
     private final ReqReplyService reqReplyService;
+    private final ReqReplyServiceFixedQueue reqReplyServiceFixedQueue;
     private final AccountRepository accountRepository;
 
     public Mono<ServerResponse> listenRegisterAccount(ServerRequest serverRequest) {
@@ -30,8 +32,17 @@ public class Handler {
                 .flatMap(account -> ServerResponse.ok().bodyValue(account));
     }
 
-    public Mono<ServerResponse> listenGETOtherUseCase(ServerRequest serverRequest) {
-        return reqReplyService.requestReply("Hello")
+    public Mono<ServerResponse> listenGETRequestReply(ServerRequest serverRequest) {
+        var message = serverRequest.queryParam("m").orElse("Hello");
+
+        return reqReplyService.requestReply(message)
+                .flatMap(response -> ServerResponse.ok().bodyValue(response));
+    }
+
+    public Mono<ServerResponse> listenGETRequestReplyFixedQueue(ServerRequest serverRequest) {
+        var message = serverRequest.queryParam("m").orElse("Hello");
+
+        return reqReplyServiceFixedQueue.requestReply(message)
                 .flatMap(response -> ServerResponse.ok().bodyValue(response));
     }
 

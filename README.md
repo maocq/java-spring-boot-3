@@ -19,8 +19,15 @@ docker run -e LICENSE=accept -e MQ_QMGR_NAME=QM1 -p 1414:1414 -p 9443:9443 -d --
 docker container exec -it ibmmq setmqaut -m QM1 -n SYSTEM.DEFAULT.MODEL.QUEUE -t queue -p app +get +put +inq +dsp
 ```
 
+https://localhost:9443/ibmmq/console/login.html#
+
+- admin
+- passw0rd
+
 ```sh
-curl 'http://localhost:8080/api/otherusercase/path'
+curl 'http://localhost:8080/api/usecase/req-reply'
+
+curl 'http://localhost:8080/api/usecase/req-reply-fixed-queue?m=HelloW'
 ```
 
 - DB

@@ -26,6 +26,9 @@ adapter:
     url: "https://run.mocky.io"
 commons:
   jms:
+    input-concurrency: 10
+    input-queue: "DEV.QUEUE.1"
+    input-queue-alias: ""
     output-concurrency: 10
     output-queue: "DEV.QUEUE.2"
     producer-ttl: 0

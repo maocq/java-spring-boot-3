@@ -15,7 +15,8 @@ public class RouterRest {
     public RouterFunction<ServerResponse> routerFunction(Handler handler) {
         return route(POST("/api/usecase/account"), handler::listenRegisterAccount)
                 .andRoute(POST("/api/usecase/otherpath"), handler::listenPOSTUseCase)
-                .and(route(GET("/api/otherusercase/path"), handler::listenGETOtherUseCase))
+                .and(route(GET("/api/usecase/req-reply"), handler::listenGETRequestReply))
+                .and(route(GET("/api/usecase/req-reply-fixed-queue"), handler::listenGETRequestReplyFixedQueue))
                 .and(route(GET("/api/db/path"), handler::listenDbUseCase));
     }
 }
