@@ -17,7 +17,8 @@ public class PostgreSQLConnectionPool {
     public static final int MAX_IDLE_TIME = 30;
 
 	@Bean
-	public ConnectionPool getConnectionConfig() {
+	public ConnectionPool getConnectionConfig(PostgresqlConnectionProperties properties) {
+		System.out.println(properties.getDatabase() + " <--");
 
 		PostgresqlConnectionProperties pgProperties = new PostgresqlConnectionProperties();
 		pgProperties.setDatabase("postgres");

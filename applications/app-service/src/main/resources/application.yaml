@@ -37,3 +37,6 @@ ibm:
   mq:
     channel: "DEV.APP.SVRCONN"
     user: "app"
+aws:
+  region: "us-east-1"
+  secretName: "db_config_test"

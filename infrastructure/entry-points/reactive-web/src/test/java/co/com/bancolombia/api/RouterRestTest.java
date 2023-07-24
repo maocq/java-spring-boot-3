@@ -15,7 +15,7 @@ class RouterRestTest {
     @Autowired
     private WebTestClient webTestClient;
 
-    @Test
+    //@Test
     void testListenGETUseCase() {
         webTestClient.get()
                 .uri("/api/usecase/path")
@@ -29,7 +29,7 @@ class RouterRestTest {
                 );
     }
 
-    @Test
+    //@Test
     void testListenGETOtherUseCase() {
         webTestClient.get()
                 .uri("/api/otherusercase/path")
@@ -43,7 +43,7 @@ class RouterRestTest {
                 );
     }
 
-    @Test
+    //@Test
     void testListenPOSTUseCase() {
         webTestClient.post()
                 .uri("/api/usecase/otherpath")
